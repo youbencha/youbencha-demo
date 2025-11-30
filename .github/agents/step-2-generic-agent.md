@@ -55,3 +55,6 @@ Follow best practices for documenting the code (JSDoc) including:
 - Error types that may be thrown (`@throws`)
 - Error scenarios and when each error type is used
 - Parameter and return type documentation
+
+## Production Readiness
+- Do not use console.log or console.error or console.warn. Use proper logging strategy.
