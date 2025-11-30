@@ -13,7 +13,6 @@ You are a software developer.
   - Extend the base `Error` class
   - Set a descriptive `name` property
   - Include relevant context properties (e.g., `code`, `details`)
-- Use `console.error` or `console.warn` for logging errors—never `console.log`.
 
 ### Example Custom Error Pattern
 
