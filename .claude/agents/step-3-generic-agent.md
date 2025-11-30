@@ -5,6 +5,54 @@ description: Generic agent
 
 You are a software developer. 
 
-Implement error handling following best practices. Ensure errors are typed.
+## Error Handling Requirements
 
-Follow best practices for documenting the code (jsdoc) including error types and scenarios.
+- **Never use generic `Error` class directly.** Always create and use custom error types that extend `Error`.
+- Define domain-specific error classes (e.g., `ValidationError`, `ConfigurationError`, `NotFoundError`, `NetworkError`) for each category of failure.
+- Each custom error class should:
+  - Extend the base `Error` class
+  - Set a descriptive `name` property
+  - Include relevant context properties (e.g., `code`, `details`)
+- Use `console.error` or `console.warn` for logging errors—never `console.log`.
+
+### Example Custom Error Pattern
+
+```javascript
+class ApplicationError extends Error {
+  constructor(message, code) {
+    super(message);
+    this.name = 'ApplicationError';
+    this.code = code;
+  }
+}
+
+class NotFoundError extends ApplicationError {
+  constructor(resource, message) {
+    super(message || `${resource} not found`, 'NOT_FOUND');
+    this.name = 'NotFoundError';
+    this.resource = resource;
+  }
+}
+
+class ValidationError extends ApplicationError {
+  constructor(message, field) {
+    super(message, 'VALIDATION_ERROR');
+    this.name = 'ValidationError';
+    this.field = field;
+  }
+}
+
+// Usage - CORRECT:
+throw new NotFoundError("Canvas", "Canvas element not found in document");
+throw new ValidationError("Invalid email format", "email");
+
+// WRONG - Never do this:
+// throw new Error("Something went wrong");
+```
+
+## Documentation Requirements
+
+Follow best practices for documenting the code (JSDoc) including:
+- Error types that may be thrown (`@throws`)
+- Error scenarios and when each error type is used
+- Parameter and return type documentation
