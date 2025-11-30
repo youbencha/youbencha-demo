@@ -8,6 +8,8 @@ Uses your current CLI context. Currently there are only examples for Copilot CLI
 
 ## Review Step 1
 - Review the evaluators set in the test case configuration, testcase-iteration-1.yaml. If you were starting from scratch and following a test driven development approach, these evaluators would be written first.
+- The git-diff is a code based evaluator.  There is no LLM/Agent involved.  It provides change metrics as well as pass/fail results based on predefined criteria such as max_files_changed or max_total_changes.
+- The agentic-judge evaluator uses the selected coding cli (copilot or claude) and performs evaluations on your code agentically. It uses the same tools you use to write code to review the provided assertions and makes a judgement on whether or not it passes or fails.
 - Review the generic-agent.md file that will be the base agent to perform the task (prompt). The starting point the agent will use is this repo (https://github.com/youbencha/hello-world.git) which contains a simple hello world readme.md file. The prompt is not detailed and very ambiguous.
 
 ## Run Step 1
@@ -73,4 +75,13 @@ Uses your current CLI context. Currently there are only examples for Copilot CLI
 - yb run -c ./copilot/iteration-2/testcase-iteration-2.yaml
 
 ## Review Step 2 Results
-- The prompt specifically states to implement error handling and follow doc best practices
+- The evaluation results should have improved.  The only failing evaluation should be the git-diff evaluator.  Sometimes with evaluators, we may need to tune our evaluators based on the actual use case.  Creating a snake game in under 200 lines of code is not very realistic.  
+
+## Review Step 3
+In step 3, the agent and prompt remain the same.  The only change is the evaluator. The number of max lines of code has been changed to 3000
+
+## Run Step 3
+- yb run -c ./copilot/iteration-3/testcase-iteration-3.yaml
+
+## Review Step 3 Results
+All evaluators should now be passing

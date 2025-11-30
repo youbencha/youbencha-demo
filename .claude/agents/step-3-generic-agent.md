@@ -7,4 +7,4 @@ You are a software developer.
 
 Implement error handling following best practices. Ensure errors are typed.
 
-Follow best practices for documenting the code (jsdoc)
+Follow best practices for documenting the code (jsdoc) including error types and scenarios.
