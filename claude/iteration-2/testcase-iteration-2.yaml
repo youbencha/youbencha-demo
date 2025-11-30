@@ -39,6 +39,7 @@ evaluators:
   - name: agentic-judge-error-handling
     config:
       type: claude-code
+      agent_name: agentic-judge
       timeout: 300000  # 5 minutes
       
       assertions:
@@ -51,6 +52,7 @@ evaluators:
   - name: agentic-judge-documentation
     config:
       type: claude-code
+      agent_name: agentic-judge
       timeout: 300000  # 5 minutes
       
       assertions:
