@@ -31,8 +31,8 @@ evaluators:
   - name: git-diff
     config:
       assertions:
-        max_files_changed: if max files changed is greater than 5, score 0, else score 1
-        max_total_changes: if max total lines changed is greater than 200, score 0, else score 1
+        max_files_changed: 5
+        max_total_changes: 200
   
   # Judge 1: Error Handling Quality
   # Focused evaluation of error handling implementation
