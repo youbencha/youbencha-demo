@@ -16,7 +16,7 @@ description: "Tests the agent's ability to add comprehensive error handling to a
 workspace_name: claude-snake-iteration-3
 # Repository configuration
 repo: https://github.com/youbencha/hello-world.git
-branch: main
+branch: demo
 
 # Agent configuration
 agent:
