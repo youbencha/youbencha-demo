@@ -21,6 +21,7 @@ branch: main
 # Agent configuration
 agent:
   type: claude-code
+  agent_name: step-1-generic-agent
   config:
     prompt_file: ./iteration-1-prompt.md
 

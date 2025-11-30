@@ -21,6 +21,7 @@ branch: main
 # Agent configuration
 agent:
   type: copilot-cli
+  agent_name: step-2-generic-agent
   config:
     prompt_file: ./iteration-2-prompt.md
 

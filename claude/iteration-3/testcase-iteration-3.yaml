@@ -21,7 +21,8 @@ branch: main
 # Agent configuration
 agent:
   type: claude-code
-  config:
+  agent_name: step-3-generic-agent
+  config:    
     prompt_file: ./iteration-3-prompt.md
 
 # Evaluators - multiple agentic-judge instances with different focuses
