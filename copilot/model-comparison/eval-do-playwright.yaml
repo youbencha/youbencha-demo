@@ -1,0 +1,26 @@
+name: "Run Playwright with yb eval"
+# Directory to evaluate (relative or absolute path)
+# This should be a git repository for git-diff evaluator to work
+directory: "."
+
+# Optional: Expected reference directory for expected-diff evaluator
+# expected_directory: "./examples/agent-outputs/expected-auth-feature"
+
+# Optional: Where to save results (default: .youbencha-eval)
+# output_dir: ".youbencha-eval"
+
+# Evaluators to run
+evaluators:
+ # Judge 1: Functional test
+  # Functional testing of to-do app features using Playwright MCP
+  - name: agentic-judge-error-handling
+    config:
+      type: copilot-cli
+      agent_name: agentic-judge
+      model: claude-sonnet-4.5
+      prompt: "For each assertion, use the Playwright MCP tool to open a new instance of the page and try to perform actions to assert"
+      timeout: 300000  # 5 minutes      
+      assertions:
+        add_new_list: "Find the navigation for a new list and add a new list. Score 1 if successful, 0 if not successful."
+        add_todo_item: "Add a new to-do item to the list. Score 1 if successful, 0 if not successful."
+  

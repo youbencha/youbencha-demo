@@ -1,0 +1,27 @@
+name: "Test model comparison for building to do app using Claude Sonnet 4.5"
+description: "Test model comparison for building to do app using Claude Sonnet 4.5"
+workspace_name: todo-pwa-sonnet45
+# Repository configuration
+repo: https://github.com/youbencha/hello-world.git
+branch: demo
+
+# Agent configuration
+agent:
+  type: copilot-cli
+  agent_name: pwa-expert-agent
+  model: claude-sonnet-4.5
+  config:
+    prompt_file: ./build-todo-prompt.md
+
+# Evaluators
+evaluators:
+  # Standard git-diff to track scope of changes
+  - name: git-diff
+    config:
+      assertions:
+        max_files_changed: 10
+        max_total_changes: 25000
+  
+  - file: ./todo-playwright-eval.yaml
+  
+  
