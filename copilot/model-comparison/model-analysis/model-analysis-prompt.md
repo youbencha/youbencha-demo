@@ -1,0 +1,3 @@
+Each one of these todo-folders contains a src-modified folder that is the result of the #file:pwa-expert-agent.md agent and prompt #file:build-todo-prompt.md run with copilot cli with a different model.  analyze the contents of each folder and generate an analysis of the different coding style/approaches each model uses.  the model can be discerned from the parent folder name after -todo-pwa-
+
+Generate a model-analysis.md file with your analysis.

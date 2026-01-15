@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="144" height="144" viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="rounded">
+      <rect width="144" height="144" rx="32.4" ry="32.4"/>
+    </clipPath>
+  </defs>
+  
+  <!-- Background with rounded corners -->
+  <rect width="144" height="144" rx="32.4" fill="#6366f1"/>
+  
+  <!-- White circle -->
+  <circle cx="72" cy="72" r="42.1875" fill="white" opacity="0.95"/>
+  
+  <!-- Checkmark -->
+  <path d="M 54.84375 72 L 66.09375 83.25 L 90 59.34375" 
+        stroke="#6366f1" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Decorative lines -->
+  <line x1="42.1875" y1="42.1875" x2="61.875" y2="42.1875" 
+        stroke="white" stroke-width="4.5" stroke-linecap="round" opacity="0.8"/>
+  <line x1="42.1875" y1="53.4375" x2="56.25" y2="53.4375" 
+        stroke="white" stroke-width="4.5" stroke-linecap="round" opacity="0.6"/>
+  <line x1="82.125" y1="90" x2="101.8125" y2="90" 
+        stroke="white" stroke-width="4.5" stroke-linecap="round" opacity="0.8"/>
+  <line x1="87.75" y1="101.25" x2="101.8125" y2="101.25" 
+        stroke="white" stroke-width="4.5" stroke-linecap="round" opacity="0.6"/>
+</svg>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Convert icon-96x96.png</title></head>
+<body style="margin:0;padding:0;">
+<canvas id="canvas" width="96" height="96"></canvas>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const img = new Image();
+img.onload = function() {
+  ctx.drawImage(img, 0, 0, 96, 96);
+  canvas.toBlob(function(blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'icon-96x96.png';
+    a.click();
+  }, 'image/png');
+};
+img.src = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxjbGlwUGF0aCBpZD0icm91bmRlZCI+CiAgICAgIDxyZWN0IHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgcng9IjIxLjYiIHJ5PSIyMS42Ii8+CiAgICA8L2NsaXBQYXRoPgogIDwvZGVmcz4KICAKICA8IS0tIEJhY2tncm91bmQgd2l0aCByb3VuZGVkIGNvcm5lcnMgLS0+CiAgPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMjEuNiIgZmlsbD0iIzYzNjZmMSIvPgogIAogIDwhLS0gV2hpdGUgY2lyY2xlIC0tPgogIDxjaXJjbGUgY3g9IjQ4IiBjeT0iNDgiIHI9IjI4LjEyNSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOTUiLz4KICAKICA8IS0tIENoZWNrbWFyayAtLT4KICA8cGF0aCBkPSJNIDM2LjU2MjUgNDggTCA0NC4wNjI1IDU1LjUgTCA2MCAzOS41NjI1IiAKICAgICAgICBzdHJva2U9IiM2MzY2ZjEiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIi8+CiAgCiAgPCEtLSBEZWNvcmF0aXZlIGxpbmVzIC0tPgogIDxsaW5lIHgxPSIyOC4xMjUiIHkxPSIyOC4xMjUiIHgyPSI0MS4yNSIgeTI9IjI4LjEyNSIgCiAgICAgICAgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuOCIvPgogIDxsaW5lIHgxPSIyOC4xMjUiIHkxPSIzNS42MjUiIHgyPSIzNy41IiB5Mj0iMzUuNjI1IiAKICAgICAgICBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iMC42Ii8+CiAgPGxpbmUgeDE9IjU0Ljc1IiB5MT0iNjAiIHgyPSI2Ny44NzUiIHkyPSI2MCIgCiAgICAgICAgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuOCIvPgogIDxsaW5lIHgxPSI1OC41IiB5MT0iNjcuNSIgeDI9IjY3Ljg3NSIgeTI9IjY3LjUiIAogICAgICAgIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjYiLz4KPC9zdmc+';
+</script>
+</body></html>

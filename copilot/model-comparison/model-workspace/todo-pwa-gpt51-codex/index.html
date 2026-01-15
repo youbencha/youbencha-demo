@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="FocusFlow Lists – a modern multi-list to-do PWA that works beautifully online and offline." />
+    <meta name="theme-color" content="#6c5ce7" />
+    <meta name="color-scheme" content="dark light" />
+    <title>FocusFlow Lists</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="images/icons/icon-192.png" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <noscript class="noscript-banner">
+      FocusFlow Lists needs JavaScript enabled to work properly.
+    </noscript>
+
+    <header class="app-header">
+      <div class="brand-block">
+        <p class="eyebrow">Progressive Web App</p>
+        <h1>FocusFlow Lists</h1>
+      </div>
+      <div class="header-meta">
+        <span class="status-pill" id="networkStatus" role="status" aria-live="polite" data-state="online">
+          Online
+        </span>
+        <span class="status-pill status-pill--muted" id="listIndicator">0 lists</span>
+        <button class="ghost" type="button" id="listManagerButton" aria-haspopup="dialog">
+          Manage lists
+        </button>
+      </div>
+    </header>
+
+    <div class="app-feedback" id="appFeedback" role="status" aria-live="polite"></div>
+
+    <main class="app-shell">
+      <aside class="list-sidebar" aria-label="To-do lists">
+        <div class="list-sidebar__header">
+          <div>
+            <p class="eyebrow">Collections</p>
+            <h2><span id="listCount">0</span> lists</h2>
+          </div>
+          <button class="primary small" type="button" id="addListButton">
+            + New list
+          </button>
+        </div>
+        <ul class="list-collection" id="listCollection" role="tablist"></ul>
+      </aside>
+
+      <section class="task-panel" aria-live="polite">
+        <div class="task-panel__header">
+          <div>
+            <p class="eyebrow">Active list</p>
+            <h2 id="activeListName">Loading…</h2>
+            <p class="subtle" id="taskSummary"></p>
+          </div>
+          <div class="task-panel__controls">
+            <label class="sr-only" for="listSelect">Switch list</label>
+            <select id="listSelect" class="select"></select>
+            <button class="ghost" type="button" id="renameListButton">Rename</button>
+            <button class="ghost danger" type="button" id="deleteListButton">Delete</button>
+          </div>
+        </div>
+
+        <form id="taskForm" class="task-form" autocomplete="off">
+          <label class="sr-only" for="taskInput">Add a task</label>
+          <input
+            id="taskInput"
+            name="task"
+            type="text"
+            placeholder="What needs to happen next?"
+            minlength="1"
+            maxlength="120"
+            required
+            inputmode="text"
+          />
+          <button class="primary" type="submit">Add task</button>
+        </form>
+
+        <div class="empty-state" id="emptyState">
+          <h3>You're all caught up ✨</h3>
+          <p>Add your first task to keep the momentum going.</p>
+        </div>
+
+        <ul class="task-list" id="taskList"></ul>
+      </section>
+    </main>
+
+    <button class="fab" id="fabAddTask" type="button" aria-label="Add a new task">
+      <span aria-hidden="true">＋</span>
+    </button>
+
+    <dialog id="listManagerDialog" class="manager-dialog" aria-labelledby="listManagerTitle">
+      <form method="dialog" class="manager-dialog__header">
+        <h2 id="listManagerTitle">Manage lists</h2>
+        <button type="submit" class="ghost" value="cancel" aria-label="Close dialog">✕</button>
+      </form>
+      <div class="manager-dialog__body">
+        <ul id="managerList" class="manager-list"></ul>
+        <form id="managerCreateForm" class="manager-create" autocomplete="off">
+          <label class="sr-only" for="managerCreateInput">New list name</label>
+          <input
+            id="managerCreateInput"
+            type="text"
+            name="listName"
+            placeholder="New list name"
+            required
+            minlength="1"
+            maxlength="60"
+          />
+          <button class="primary" type="submit">Create list</button>
+        </form>
+      </div>
+    </dialog>
+
+    <template id="taskItemTemplate">
+      <li class="task-item" data-task-id="">
+        <label class="task-content">
+          <input type="checkbox" class="task-toggle" />
+          <span class="task-text" tabindex="0"></span>
+        </label>
+        <div class="task-actions">
+          <button type="button" class="ghost" data-action="edit">Edit</button>
+          <button type="button" class="ghost danger" data-action="delete">Delete</button>
+        </div>
+      </li>
+    </template>
+  </body>
+</html>

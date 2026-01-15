@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Convert icon-144x144.png</title></head>
+<body style="margin:0;padding:0;">
+<canvas id="canvas" width="144" height="144"></canvas>
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const img = new Image();
+img.onload = function() {
+  ctx.drawImage(img, 0, 0, 144, 144);
+  canvas.toBlob(function(blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'icon-144x144.png';
+    a.click();
+  }, 'image/png');
+};
+img.src = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjE0NCIgdmlld0JveD0iMCAwIDE0NCAxNDQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8Y2xpcFBhdGggaWQ9InJvdW5kZWQiPgogICAgICA8cmVjdCB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjE0NCIgcng9IjMyLjQiIHJ5PSIzMi40Ii8+CiAgICA8L2NsaXBQYXRoPgogIDwvZGVmcz4KICAKICA8IS0tIEJhY2tncm91bmQgd2l0aCByb3VuZGVkIGNvcm5lcnMgLS0+CiAgPHJlY3Qgd2lkdGg9IjE0NCIgaGVpZ2h0PSIxNDQiIHJ4PSIzMi40IiBmaWxsPSIjNjM2NmYxIi8+CiAgCiAgPCEtLSBXaGl0ZSBjaXJjbGUgLS0+CiAgPGNpcmNsZSBjeD0iNzIiIGN5PSI3MiIgcj0iNDIuMTg3NSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOTUiLz4KICAKICA8IS0tIENoZWNrbWFyayAtLT4KICA8cGF0aCBkPSJNIDU0Ljg0Mzc1IDcyIEwgNjYuMDkzNzUgODMuMjUgTCA5MCA1OS4zNDM3NSIgCiAgICAgICAgc3Ryb2tlPSIjNjM2NmYxIiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgZmlsbD0ibm9uZSIvPgogIAogIDwhLS0gRGVjb3JhdGl2ZSBsaW5lcyAtLT4KICA8bGluZSB4MT0iNDIuMTg3NSIgeTE9IjQyLjE4NzUiIHgyPSI2MS44NzUiIHkyPSI0Mi4xODc1IiAKICAgICAgICBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjgiLz4KICA8bGluZSB4MT0iNDIuMTg3NSIgeTE9IjUzLjQzNzUiIHgyPSI1Ni4yNSIgeTI9IjUzLjQzNzUiIAogICAgICAgIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iNC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgogIDxsaW5lIHgxPSI4Mi4xMjUiIHkxPSI5MCIgeDI9IjEwMS44MTI1IiB5Mj0iOTAiIAogICAgICAgIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iNC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuOCIvPgogIDxsaW5lIHgxPSI4Ny43NSIgeTE9IjEwMS4yNSIgeDI9IjEwMS44MTI1IiB5Mj0iMTAxLjI1IiAKICAgICAgICBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjYiLz4KPC9zdmc+';
+</script>
+</body></html>

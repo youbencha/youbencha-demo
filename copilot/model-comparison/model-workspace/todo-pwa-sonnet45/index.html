@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A beautiful, intuitive progressive web app for managing multiple to-do lists">
+    <meta name="theme-color" content="#6366f1">
+    <title>TaskFlow - To-Do Lists</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="app-title">TaskFlow</h1>
+            <button class="list-selector-btn" id="listSelectorBtn" aria-label="Select list" aria-haspopup="true" aria-expanded="false">
+                <span id="currentListName">My Tasks</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- List Selector Dropdown -->
+    <div class="list-dropdown" id="listDropdown" role="menu" aria-label="List selection menu">
+        <div class="dropdown-content">
+            <div class="dropdown-header">
+                <h2>Your Lists</h2>
+                <button class="btn-icon" id="addListBtn" aria-label="Create new list">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <ul class="list-items" id="listItems" role="list">
+                <!-- Lists will be dynamically inserted here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Task List -->
+            <div class="task-list" id="taskList" role="list">
+                <!-- Tasks will be dynamically inserted here -->
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState">
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+                    <circle cx="60" cy="60" r="50" stroke="#e0e7ff" stroke-width="2"/>
+                    <path d="M40 60L52 72L80 44" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h2>No tasks yet</h2>
+                <p>Add a task to get started with your to-do list</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Task Input Area -->
+    <div class="add-task-container">
+        <div class="add-task-input-wrapper">
+            <input 
+                type="text" 
+                id="taskInput" 
+                class="task-input" 
+                placeholder="Add a new task..."
+                aria-label="New task"
+                maxlength="500"
+            >
+            <button class="btn-add-task" id="addTaskBtn" aria-label="Add task">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Dialog for Creating/Editing List -->
+    <dialog class="modal" id="listModal" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Create New List</h2>
+                <button class="btn-icon" id="closeModalBtn" aria-label="Close dialog">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label for="listNameInput" class="input-label">List Name</label>
+                <input 
+                    type="text" 
+                    id="listNameInput" 
+                    class="modal-input" 
+                    placeholder="Enter list name..."
+                    maxlength="50"
+                    required
+                >
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveListBtn">Save</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Confirmation Dialog -->
+    <dialog class="modal" id="confirmModal" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="confirmTitle">Confirm Action</h2>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">Are you sure?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelConfirmBtn">Cancel</button>
+                <button class="btn btn-danger" id="confirmActionBtn">Delete</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offlineIndicator" role="status" aria-live="polite">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M10 2C7.87827 2 5.84344 2.84285 4.34315 4.34315C2.84285 5.84344 2 7.87827 2 10C2 12.1217 2.84285 14.1566 4.34315 15.6569C5.84344 17.1571 7.87827 18 10 18M10 2C12.1217 2 14.1566 2.84285 15.6569 4.34315C17.1571 5.84344 18 7.87827 18 10C18 12.1217 17.1571 14.1566 15.6569 15.6569C14.1566 17.1571 12.1217 18 10 18M10 2V18" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        <span>You're offline</span>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

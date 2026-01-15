@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="152" height="152" viewBox="0 0 152 152" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="rounded">
+      <rect width="152" height="152" rx="34.2" ry="34.2"/>
+    </clipPath>
+  </defs>
+  
+  <!-- Background with rounded corners -->
+  <rect width="152" height="152" rx="34.2" fill="#6366f1"/>
+  
+  <!-- White circle -->
+  <circle cx="76" cy="76" r="44.53125" fill="white" opacity="0.95"/>
+  
+  <!-- Checkmark -->
+  <path d="M 57.890625 76 L 69.765625 87.875 L 95 62.640625" 
+        stroke="#6366f1" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Decorative lines -->
+  <line x1="44.53125" y1="44.53125" x2="65.3125" y2="44.53125" 
+        stroke="white" stroke-width="4.75" stroke-linecap="round" opacity="0.8"/>
+  <line x1="44.53125" y1="56.40625" x2="59.375" y2="56.40625" 
+        stroke="white" stroke-width="4.75" stroke-linecap="round" opacity="0.6"/>
+  <line x1="86.6875" y1="95" x2="107.46875" y2="95" 
+        stroke="white" stroke-width="4.75" stroke-linecap="round" opacity="0.8"/>
+  <line x1="92.625" y1="106.875" x2="107.46875" y2="106.875" 
+        stroke="white" stroke-width="4.75" stroke-linecap="round" opacity="0.6"/>
+</svg>

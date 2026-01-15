@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Converter</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #6366f1;
+        }
+        .instructions {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #4f46e5;
+        }
+        #preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .icon-item {
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TaskFlow Icon Converter</h1>
+    
+    <div class="instructions">
+        <h2>Instructions:</h2>
+        <ol>
+            <li>Click "Generate PNG Icons" button below</li>
+            <li>Right-click on each icon and select "Save image as..."</li>
+            <li>Save each icon with the corresponding filename shown below it</li>
+            <li>Save all icons to the <code>images/icons/</code> folder</li>
+        </ol>
+    </div>
+
+    <button onclick="generateIcons()">Generate PNG Icons</button>
+    
+    <div id="preview"></div>
+
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const scale = size / 512;
+            
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Background with rounded corners
+            ctx.fillStyle = '#6366f1';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, size * 0.225);
+            ctx.fill();
+            
+            // White circle
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, 150 * scale, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Checkmark
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 32 * scale;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.beginPath();
+            ctx.moveTo(195 * scale, 256 * scale);
+            ctx.lineTo(235 * scale, 296 * scale);
+            ctx.lineTo(320 * scale, 211 * scale);
+            ctx.stroke();
+            
+            // Decorative lines
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.lineWidth = 16 * scale;
+            ctx.beginPath();
+            ctx.moveTo(150 * scale, 150 * scale);
+            ctx.lineTo(220 * scale, 150 * scale);
+            ctx.stroke();
+            
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.beginPath();
+            ctx.moveTo(150 * scale, 190 * scale);
+            ctx.lineTo(200 * scale, 190 * scale);
+            ctx.stroke();
+            
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.beginPath();
+            ctx.moveTo(292 * scale, 320 * scale);
+            ctx.lineTo(362 * scale, 320 * scale);
+            ctx.stroke();
+            
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.beginPath();
+            ctx.moveTo(312 * scale, 360 * scale);
+            ctx.lineTo(362 * scale, 360 * scale);
+            ctx.stroke();
+        }
+
+        function generateIcons() {
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '';
+            
+            sizes.forEach(size => {
+                const container = document.createElement('div');
+                container.className = 'icon-item';
+                
+                const canvas = document.createElement('canvas');
+                drawIcon(canvas, size);
+                
+                const label = document.createElement('div');
+                label.textContent = `icon-${size}x${size}.png`;
+                label.style.marginTop = '10px';
+                label.style.fontSize = '14px';
+                label.style.color = '#64748b';
+                
+                container.appendChild(canvas);
+                container.appendChild(label);
+                preview.appendChild(container);
+            });
+        }
+
+        // Auto-generate on load
+        window.addEventListener('load', generateIcons);
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple, offline-capable To-Do List PWA">
+    <meta name="theme-color" content="#4a90e2">
+    <title>To-Do PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="images/icon.svg">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>My Lists</h2>
+                <button id="close-sidebar" class="icon-btn mobile-only" aria-label="Close sidebar">&times;</button>
+            </div>
+            <ul class="lists-container" id="lists-container">
+                <!-- Lists will be injected here -->
+            </ul>
+            <button id="add-list-btn" class="add-list-btn">+ New List</button>
+        </aside>
+
+        <main class="main-content">
+            <header class="app-header">
+                <button id="menu-toggle" class="icon-btn mobile-only" aria-label="Open menu">
+                    <span class="hamburger"></span>
+                </button>
+                <h1 id="current-list-title">My Tasks</h1>
+                <div class="header-actions">
+                    <button id="delete-list-btn" class="icon-btn danger" aria-label="Delete current list" title="Delete List">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="tasks-container" id="tasks-container">
+                <!-- Tasks will be injected here -->
+                <div class="empty-state" id="empty-state">
+                    <p>No tasks yet. Add one below!</p>
+                </div>
+            </div>
+
+            <div class="task-input-area">
+                <form id="add-task-form">
+                    <input type="text" id="new-task-input" placeholder="Add a new task..." aria-label="New task" required>
+                    <button type="submit" class="add-task-btn" aria-label="Add task">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                </form>
+            </div>
+        </main>
+        
+        <div class="overlay" id="overlay"></div>
+    </div>
+
+    <!-- Dialogs -->
+    <dialog id="new-list-dialog">
+        <form id="new-list-form">
+            <h3>Create New List</h3>
+            <input type="text" id="new-list-input" placeholder="List Name" required>
+            <div class="dialog-actions">
+                <button type="button" class="btn-text" id="cancel-new-list">Cancel</button>
+                <button type="submit" class="btn-primary">Create</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
